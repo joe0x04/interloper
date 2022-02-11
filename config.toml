@@ -1,0 +1,17 @@
+# Main config file
+
+# this app is designed to have a reverse proxy like nginx
+# handle the port 80 and TLS stuff
+[http]
+enabled = true
+port = 8087
+ip = "127.0.0.1"
+
+
+# only MySQL is supported
+[database]
+host = "127.0.0.1"
+schema = "interloper_dev"
+user = "unused here - create DBUSER environment variable"
+password = "unused here - create DBPASS environment variable"
+

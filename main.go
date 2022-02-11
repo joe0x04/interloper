@@ -4,6 +4,8 @@ package main
 import (
 	"log"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/BurntSushi/toml"
 )
@@ -30,9 +32,25 @@ func LoadConfig(filename string) {
 }
 
 /**
+ * We've intercepted a ctrl-c, close file and database handles
+ * and exit gracefully
+ */
+func Shutdown() {
+	log.Println("Shutting down...")
+}
+
+/**
  *
  */
 func main() {
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-c
+		Shutdown()
+		os.Exit(1)
+	}()
+
 	log.Printf("Starting on %s:%d\n", config.HTTP.IPAddress, config.HTTP.Port)
 }
 

@@ -2,7 +2,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 
 	"github.com/BurntSushi/toml"
@@ -17,11 +17,11 @@ var config TomlConfig
 func LoadConfig(filename string) {
 	f, err := os.ReadFile(filename)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	if _, err := toml.Decode(string(f), &config); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	// we don't want credentials in config file, use environment vars
@@ -33,7 +33,7 @@ func LoadConfig(filename string) {
  *
  */
 func main() {
-	fmt.Printf("Starting on %s:%d\n", config.HTTP.IPAddress, config.HTTP.Port)
+	log.Printf("Starting on %s:%d\n", config.HTTP.IPAddress, config.HTTP.Port)
 }
 
 /**

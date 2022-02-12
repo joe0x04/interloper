@@ -57,9 +57,6 @@ func Shutdown() {
  *
  */
 func main() {
-
-	DBGetTime()
-
 	// catch signals
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)

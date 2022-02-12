@@ -2,6 +2,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,6 +16,7 @@ import (
 )
 
 var config TomlConfig
+var database *sql.DB
 
 /**
  * This function handles a call for index, the top level
@@ -55,6 +57,9 @@ func Shutdown() {
  *
  */
 func main() {
+
+	DBGetTime()
+
 	// catch signals
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
@@ -84,4 +89,5 @@ func main() {
  */
 func init() {
 	LoadConfig("config.toml")
+	DBConnect()
 }

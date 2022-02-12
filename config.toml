@@ -10,7 +10,7 @@ ip = "127.0.0.1"
 
 # only MySQL is supported
 [database]
-host = "127.0.0.1"
+host = "127.0.0.1:3306"
 schema = "interloper_dev"
 user = "unused here - create DBUSER environment variable"
 password = "unused here - create DBPASS environment variable"

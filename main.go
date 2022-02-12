@@ -2,12 +2,16 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/BurntSushi/toml"
+	"github.com/gorilla/mux"
 )
 
 var config TomlConfig
@@ -52,6 +56,17 @@ func main() {
 	}()
 
 	log.Printf("Starting on %s:%d\n", config.HTTP.IPAddress, config.HTTP.Port)
+	addr := fmt.Sprintf("%s:%d", config.HTTP.IPAddress, config.HTTP.Port)
+
+	r := mux.NewRouter()
+	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(".")))
+	srv := &http.Server{
+		Handler:      r,
+		Addr:         addr,
+		WriteTimeout: 30 * time.Second,
+		ReadTimeout:  30 * time.Second,
+	}
+	srv.ListenAndServe()
 }
 
 /**

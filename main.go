@@ -17,6 +17,14 @@ import (
 var config TomlConfig
 
 /**
+ * This function handles a call for index, the top level
+ * default page
+ */
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Index here")
+}
+
+/**
  * Reads the config file from the filesystem and
  * unmarshals it into a structure
  */
@@ -47,6 +55,7 @@ func Shutdown() {
  *
  */
 func main() {
+	// catch signals
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
@@ -60,6 +69,7 @@ func main() {
 
 	r := mux.NewRouter()
 	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(".")))
+	r.HandleFunc("/", HomeHandler)
 	srv := &http.Server{
 		Handler:      r,
 		Addr:         addr,

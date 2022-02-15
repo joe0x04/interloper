@@ -70,8 +70,8 @@ func main() {
 	addr := fmt.Sprintf("%s:%d", config.HTTP.IPAddress, config.HTTP.Port)
 
 	r := mux.NewRouter()
-	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(".")))
-	r.HandleFunc("/", HomeHandler)
+	LoadRoutes(r)
+
 	srv := &http.Server{
 		Handler:      r,
 		Addr:         addr,

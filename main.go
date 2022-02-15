@@ -20,14 +20,6 @@ var config TomlConfig
 var database *sql.DB
 
 /**
- * This function handles a call for index, the top level
- * default page
- */
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Index here")
-}
-
-/**
  * Reads the config file from the filesystem and
  * unmarshals it into a structure
  */

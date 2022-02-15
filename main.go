@@ -3,6 +3,7 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -31,6 +32,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
  * unmarshals it into a structure
  */
 func LoadConfig(filename string) {
+	log.Printf("Loading config from: %s\n", filename)
 	f, err := os.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -85,6 +87,9 @@ func main() {
  * Runs automatically before main()
  */
 func init() {
-	LoadConfig("config.toml")
+	config := flag.String("config", "config.toml", "The config file for ports and whatnot")
+	flag.Parse()
+
+	LoadConfig(*config)
 	DBConnect()
 }

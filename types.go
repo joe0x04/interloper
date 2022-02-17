@@ -1,5 +1,8 @@
 package main
 
+/**
+ * The main config file is parsed into this struct
+ */
 type TomlConfig struct {
 	HTTP struct {
 		Enabled   bool   `toml:"enabled"`

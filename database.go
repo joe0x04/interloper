@@ -55,3 +55,11 @@ func DBGetTime() {
 		log.Printf("%s", time)
 	}
 }
+
+/**
+ * Get a Unix timestamp compatible with inserting
+ * into the db
+ */
+func DBNow() int {
+	return int(time.Now().Unix())
+}

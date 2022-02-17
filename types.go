@@ -1,6 +1,22 @@
 package main
 
 /**
+ * Holds data that makes up a community. Actual data
+ * is in the database
+ */
+type Community struct {
+	id             int
+	uuid           string
+	fullname       string
+	shortname      string
+	date_created   int
+	date_lastvisit int
+	post_count     int
+	feature_mask   int
+	creator        int
+}
+
+/**
  * The main config file is parsed into this struct
  */
 type TomlConfig struct {

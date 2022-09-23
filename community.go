@@ -29,10 +29,10 @@ func CommunityCreate(c Community) {
  * Pull a community from the database and populate
  * a struct with the data
  */
-func CommunityGet(id int, c *Community) error {
-	sql := "SELECT * FROM community WHERE id = ? LIMIT 1"
+func CommunityGet(uuid string, c *Community) error {
+	sql := "SELECT * FROM community WHERE uuid = ? LIMIT 1"
 
-	row := database.QueryRow(sql, id)
+	row := database.QueryRow(sql, uuid)
 	err := row.Scan(
 		&c.id,
 		&c.uuid,

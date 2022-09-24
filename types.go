@@ -24,6 +24,7 @@ type TomlConfig struct {
 		Enabled   bool   `toml:"enabled"`
 		IPAddress string `toml:"ip"`
 		Port      int    `toml:"port"`
+		Logfile   string `toml:"logfile"`
 	} `toml:"http"`
 
 	DB struct {

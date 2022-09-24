@@ -21,6 +21,8 @@ func DBConnect() {
 		config.DB.Schema,
 	)
 
+	log.Printf("connecting to database (%s/%s)", config.DB.Host, config.DB.Schema)
+
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(err)

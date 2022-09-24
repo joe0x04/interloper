@@ -6,6 +6,7 @@
 enabled = true
 port = 8087
 ip = "127.0.0.1"
+logfile = "/tmp/interloper.log"
 
 
 # only MySQL is supported

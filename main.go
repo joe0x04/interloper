@@ -75,16 +75,34 @@ func main() {
 		WriteTimeout: 30 * time.Second,
 		ReadTimeout:  30 * time.Second,
 	}
-	srv.ListenAndServe()
+
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 /**
  * Runs automatically before main()
  */
 func init() {
-	config := flag.String("config", "config.toml", "The config file for ports and whatnot")
+	configfile := flag.String("config", "config.toml", "The config file for ports and whatnot")
+	foreground := flag.Bool("f", false, "Foreground mode, skip logging to file")
 	flag.Parse()
 
-	LoadConfig(*config)
+	// read settings from local file
+	LoadConfig(*configfile)
+
+	if !*foreground {
+		// open a log file
+		file, err := os.OpenFile(config.HTTP.Logfile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.SetOutput(file)
+	}
+
+	log.Println("Initializing website")
+
 	DBConnect()
 }

@@ -36,10 +36,6 @@ func LoadConfig(filename string) {
 	if _, err := toml.Decode(string(f), &config); err != nil {
 		log.Fatal(err)
 	}
-
-	// we don't want credentials in config file, use environment vars
-	config.DB.User = os.Getenv("DBUSER")
-	config.DB.Pass = os.Getenv("DBPASS")
 }
 
 /**

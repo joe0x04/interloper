@@ -1,9 +1,8 @@
 package main
 
-/**
- * Holds data that makes up a community. Actual data
- * is in the database
- */
+//
+// Holds data that makes up a community
+//
 type Community struct {
 	id             int
 	uuid           string
@@ -16,9 +15,9 @@ type Community struct {
 	creator        int
 }
 
-/**
- * The main config file is parsed into this struct
- */
+//
+// The main config file is parsed into this struct
+//
 type TomlConfig struct {
 	HTTP struct {
 		Enabled   bool   `toml:"enabled"`

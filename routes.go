@@ -6,6 +6,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//
+// These are the URL patterns for the website
+//
 func LoadRoutes(r *mux.Router) {
 	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(".")))
 

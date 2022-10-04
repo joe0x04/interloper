@@ -9,9 +9,9 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-/**
- * Connect to MySQL
- */
+//
+// Connect to MySQL
+//
 func DBConnect() {
 	dsn := fmt.Sprintf(
 		"%s:%s@tcp(%s)/%s",
@@ -35,10 +35,10 @@ func DBConnect() {
 	database = db
 }
 
-/**
- * Test function to see if database connection
- * actually works
- */
+//
+// Test function to see if database connection
+// actually works
+//
 func DBGetTime() {
 	query, err := database.Query("SELECT NOW()")
 	if err != nil {
@@ -58,10 +58,11 @@ func DBGetTime() {
 	}
 }
 
-/**
- * Get a Unix timestamp compatible with inserting
- * into the db
- */
+//
+// Get a Unix timestamp compatible with inserting
+// into the database. Seconds elapsed since midnight
+// on January 1, 1970
+//
 func DBNow() int {
 	return int(time.Now().Unix())
 }

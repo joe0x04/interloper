@@ -4,10 +4,10 @@ import (
 	"log"
 )
 
-/**
- * Insert a new community into the database from
- * the argument structure
- */
+//
+// Insert a new community into the database from
+// the argument structure
+//
 func CommunityCreate(c Community) {
 	sql := "INSERT INTO community " +
 		"(uuid, fullname, shortname, date_created, feature_mask, creator) VALUES " +
@@ -25,10 +25,10 @@ func CommunityCreate(c Community) {
 	st.Close()
 }
 
-/**
- * Pull a community from the database and populate
- * a struct with the data
- */
+//
+// Pull a community from the database and populate
+// a struct with the data
+//
 func CommunityGet(uuid string, c *Community) error {
 	sql := "SELECT * FROM community WHERE uuid = ? LIMIT 1"
 

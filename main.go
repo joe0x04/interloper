@@ -1,7 +1,6 @@
-/**
- *
- *
- */
+//
+//
+//
 package main
 
 import (
@@ -22,10 +21,10 @@ import (
 var config TomlConfig
 var database *sql.DB
 
-/**
- * Reads the config file from the filesystem and
- * unmarshals it into a structure
- */
+//
+// Reads the config file from the filesystem and
+// unmarshals it into a structure
+//
 func LoadConfig(filename string) {
 	log.Printf("Loading config from: %s\n", filename)
 	f, err := os.ReadFile(filename)
@@ -38,17 +37,17 @@ func LoadConfig(filename string) {
 	}
 }
 
-/**
- * We've intercepted a ctrl-c, close file and database handles
- * and exit gracefully
- */
+//
+// We've intercepted a ctrl-c, close file and database handles
+// and exit gracefully
+//
 func Shutdown() {
 	log.Println("Shutting down...")
 }
 
-/**
- *
- */
+//
+// Start the webserver
+//
 func main() {
 	// catch signals
 	c := make(chan os.Signal)
@@ -78,9 +77,9 @@ func main() {
 	}
 }
 
-/**
- * Runs automatically before main()
- */
+//
+// Runs automatically before main()
+//
 func init() {
 	configfile := flag.String("config", "config.toml", "The config file for ports and whatnot")
 	foreground := flag.Bool("f", false, "Foreground mode, skip logging to file")
